@@ -13,8 +13,14 @@ def index():
 
 @app.route('/addsolicitudes', methods=['POST'])
 def add_solicitudes():
+
+    #try:
+    manager.getDatabase()
+    #except:
+        #pass
     xml = str(request.data.decode('utf-8'))
- 
+    meses31=['1','3','5','7','8','10','12']
+    meses30=['4','5','9','11']
 
     root = ET.fromstring(xml)
     for dte in root.iter('DTE'):
@@ -25,6 +31,8 @@ def add_solicitudes():
         valor=dte.find('VALOR').text
         iva=dte.find('IVA').text
         total=dte.find('TOTAL').text
+        
+        #Verifico el formato correcto del tag tiempo
         
    
         #Encuentro la fecha
@@ -50,10 +58,37 @@ def add_solicitudes():
         ntotal=patrondecimales.search(total)
         ntotal=ntotal.group(0)
 
+        #Verifico que el día, mes y año tengan sentido
+        dia=lfecha[0]
+        mes=lfecha[1]
+        año=lfecha[2]
+
+        if mes in meses31:
+            if int(dia)<=31:
+                pass
+            else:
+                dia=None
+        elif mes in meses30:
+            if int(dia)<=30:
+                pass
+            else:
+                dia=None
+        elif mes == '2':
+            if int(dia)<=29 and int(año)%4 == 0:
+                pass
+            elif int(dia)<=28:
+                pass
+            else:
+                dia=None
+        else:
+            mes=0
+
+
  
-        
-        manager.add_solicitud(fecha,lfecha[0],lfecha[1],lfecha[2],nreferencia,nite,nitre,nvalor,niva,ntotal)
+        if dia !=None and mes != None:
+            manager.add_solicitud(fecha,lfecha[0],lfecha[1],lfecha[2],nreferencia,nite,nitre,nvalor,niva,ntotal)
     manager.verify_solicitudes()
+    manager.llenarXML()
         
 
  

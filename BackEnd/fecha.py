@@ -3,8 +3,11 @@ from aprobacion import Aprobacion
 
 
 class Fecha():
-    def __init__(self,fecha):
+    def __init__(self,fecha, dia, mes, año):
         self.fecha=fecha
+        self.dia=dia
+        self.mes=mes
+        self.año=año
         
         #Otros atribibutos que puede tener una fecha
 
@@ -39,6 +42,7 @@ class Fecha():
     def verifyReferencia(self,referencia):
         for aprobacion in self.aprobaciones:
             try:
+                
                 if aprobacion.referencia == referencia:
                     return True
             except:
@@ -53,27 +57,50 @@ class Fecha():
     def countErrorTotal(self):
         self.errores_total+=1
 
+    def countNitE(self,cantidad):
+        self.cantidad_emisores+=cantidad
+    def countNitRe(self,cantidad):
+        self.cantidad_receptores+=cantidad
+
     def addAprobacion(self, referencia, nit_emisor,nit_receptor,valor):
 
         self.correlativo+=1
 
         if len(str(self.correlativo)) == 1:
-            codigo='0000000'+str(self.correlativo)
+            codigo=self.año+self.mes+self.dia+'0000000'+str(self.correlativo)
         elif len(str(self.correlativo)) == 2:
-            codigo = '000000'+str(self.correlativo)
+            codigo = self.año+self.mes+self.dia+'000000'+str(self.correlativo)
         elif len(str(self.correlativo)) == 3:
-            codigo = '00000'+str(self.correlativo)
+            codigo = self.año+self.mes+self.dia+'00000'+str(self.correlativo)
         elif len(str(self.correlativo)) == 4:
-            codigo = '0000'+str(self.correlativo)
+            codigo = self.año+self.mes+self.dia+'0000'+str(self.correlativo)
         elif len(str(self.correlativo)) == 5:
-            codigo = '000'+str(self.correlativo)
+            codigo = self.año+self.mes+self.dia+'000'+str(self.correlativo)
         elif len(str(self.correlativo)) == 6:
-            codigo = codigo = '00'+str(self.correlativo)
+            codigo = codigo = self.año+self.mes+self.dia+'00'+str(self.correlativo)
         elif len(str(self.correlativo)) == 7:
-            codigo = '0'+str(self.correlativo)
+            codigo = self.año+self.mes+self.dia+'0'+str(self.correlativo)
         elif len(str(self.correlativo)) == 8:
-            codigo = self.correlativo
+            codigo = self.año+self.mes+self.dia+self.correlativo
         else:
             codigo = "Error"
 
         self.aprobaciones.append(Aprobacion(referencia, nit_emisor,nit_receptor,codigo,valor))
+
+    def loadAprobacion(self, referencia, nit_emisor,nit_receptor,valor,codigo):
+        self.aprobaciones.append(Aprobacion(referencia, nit_emisor,nit_receptor,codigo,valor))
+    
+    def setAtributos(self, factura_recibidas, errores_nitemisor, errores_nitreceptor, errores_iva, errores_total, referenciasduplicadas,
+        facturas_correctas,cantidadnitemisores,cantidadnitreceptores):
+        self.facturas_recibidas=int(factura_recibidas)
+        self.errores_nitemisor=int(errores_nitemisor)
+        self.errores_nitreceptor=int(errores_nitreceptor)
+        self.errores_iva=int(errores_iva)
+        self.errores_total=int(errores_total)
+        self.referenciasduplicadas=int(referenciasduplicadas)
+        self.facturas_correctas=int(facturas_correctas)
+        self.cantidad_emisores=int(cantidadnitemisores)
+        self.cantidad_receptores=int(cantidadnitreceptores)
+
+        self.correlativo=int(facturas_correctas)
+
