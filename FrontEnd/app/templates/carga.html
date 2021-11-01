@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container" >
+    <h1 style="text-align: center;"> Carga de archivos </h1>
+</div>
+<div class="container" > 
+    
+       
+<form action="/cargar/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+<p style="text-align: right;">
+    <button type="submit" class="btn btn-success">Enviar</button>
+    <button type="button" class="btn btn-danger">Reset</button></p>
+    <br><br>
+
+<label for="file">Cargar un archivo</label>
+<br>
+<input type="file" id="file" name="file" accept="text/xml">
+<div class="" }>
+    {% if content %}   
+        <textarea label="textarea" name="textarea" rows="20" cols="61">{{content}}</textarea>
+        <textarea label="textarea" name="textarea2" rows="20" cols="61">{{response}}</textarea>
+    {% else %}
+        <textarea style="margin-right: 1rem;" label="textarea" name="textarea" rows="20" cols="61"></textarea>
+        <textarea label="textarea" name="textarea2" rows="20" cols="61"></textarea>
+    {% endif %}
+</div>
+
+</form>
+</div>
+{% endblock content %}

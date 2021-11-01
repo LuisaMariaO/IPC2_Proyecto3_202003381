@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="{% static 'images/icon.ico' %}">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Proyecto 3 - IPC2</title>
+  </head>
+  <body>
+
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+    <header class="site-navbar" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+          
+          <div class="col-11 col-xl-2">
+            <h1 class="mb-0 site-logo"><a href="index.html" class="text-white mb-0">Proyecto 3</a></h1>
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li class="active"><a href="{% url 'index' %}"><span>Inicio</span></a></li>
+                <li><a href="{% url 'cargar' %}"><span>Cargar archivo</span></a></li>
+                
+                <li class="has-children">
+                  <a href="index.html"><span>Peticiones</span></a>
+                  <ul class="dropdown arrow-top">
+                    <li><a href="#">Consultar datos</a></li>
+                    <li><a href="#">Resumen de IVA por fecha y NIT</a></li>
+                    <li><a href="#">Resumen por rango de fechas</a></li>
+                    <li><a href="#">Reporte de peticiones</a></li>
+                    
+                  </ul>
+                </li>
+
+                <li class="has-children">
+                  <a href="index.html"><span>Ayuda</span></a>
+                  <ul class="dropdown arrow-top">
+                    <li><a href="#">Información del estudiante</a></li>
+                    <li><a href="#">Documentación de la aplicación</a></li>
+        
+                  </ul>
+                </li>
+  
+            </nav>
+          </div>
+
+
+         
+          </div>
+
+        </div>
+      </div>
+      
+    </header>
+
+    <div class="hero"></div>
+
+
+      <br><br>
+      <!-- Required meta tags 
+    <button type="button" class="btn btn-success">Enviar</button>
+    <button type="button" class="btn btn-danger">Reset</button>
+    </div>-->
+
+    <main role="main">
+      {% block content %}{% endblock %}
+    </main>
+
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
