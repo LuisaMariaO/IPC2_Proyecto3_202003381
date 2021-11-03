@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container" >
+    <h1 style="text-align: center;"> Consulta de datos </h1>
+</div>
+<div class="container" > 
+    
+       
+
+    {% if content %}
+        
+         
+        <textarea label="" name="textarea1" rows="20" cols="130" style="margin-right: 20px;" readonly>{{content}}</textarea>
+        
+    {% else %}
+        
+        <h2 style="text-align: center;"> No hay registros para mostrar </h2>
+      
+    {% endif %}
+</div>
+
+</form>
+</div>
+
+{% endblock content %}

@@ -42,3 +42,28 @@ def carga(request):
     else:
         return render(request,'carga.html')
     return render(request,'carga.html',context)
+
+def resetdata(request):
+    try:
+        response = requests.delete(endpoint+'resetdata')
+        
+        return render(request,'index.html')
+    except:
+        print("Algo pasa con la API D:")
+
+def getdata(request):
+    context={
+        'content': None,
+       
+    }
+    try:
+        
+        response = requests.get(endpoint+'getdata')
+        if response.ok:
+            context['content'] = response.text
+        return render(request,'consulta.html',context)
+    except:
+        print("Algo pasa con la API D:")
+        
+   
+

@@ -12,22 +12,30 @@
     {% csrf_token %}
 <p style="text-align: right;">
     <button type="submit" class="btn btn-success">Enviar</button>
-    <button type="button" class="btn btn-danger">Reset</button></p>
-    <br><br>
+</p>
+   
 
 <label for="file">Cargar un archivo</label>
 <br>
-<input type="file" id="file" name="file" accept="text/xml">
-<div class="" }>
-    {% if content %}   
-        <textarea label="textarea" name="textarea" rows="20" cols="61">{{content}}</textarea>
-        <textarea label="textarea" name="textarea2" rows="20" cols="61">{{response}}</textarea>
+<input type="file" id="file" name="file" accept="text/xml"><br>
+<strong><label for="textarea1" style="vertical-align: top;" >Entrada</label></strong>
+<strong><label for="textarea2" style="vertical-align: top; float: right;">Salida</label></strong>
+<div >
+    
+
+    {% if content %}
+        
+         
+        <textarea label="Entrada" name="textarea1" rows="20" cols="62" style="margin-right: 20px;">{{content}}</textarea>
+        <textarea label="Salida" name="textarea2" rows="20" cols="62">{{response}}</textarea>
     {% else %}
-        <textarea style="margin-right: 1rem;" label="textarea" name="textarea" rows="20" cols="61"></textarea>
-        <textarea label="textarea" name="textarea2" rows="20" cols="61"></textarea>
+        
+        <textarea  name="textarea1" rows="20" cols="62" style="margin-right: 20px;"></textarea>
+        <textarea  name="textarea2" rows="20" cols="62"></textarea>
     {% endif %}
 </div>
 
 </form>
 </div>
+
 {% endblock content %}

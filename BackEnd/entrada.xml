@@ -1,11 +1,38 @@
 <SOLICITUD_AUTORIZACION> 
     <DTE> 
-        <TIEMPO> Guatemala, 15/01/2021 15:25 hrs. </TIEMPO> 
+        <TIEMPO> Guatemala, 09/01/2021 15:25 hrs. </TIEMPO> 
+        <REFERENCIA> A1993 </REFERENCIA> 
+        <NIT_EMISOR> 7378106 </NIT_EMISOR> 
+        <NIT_RECEPTOR> 8338817 </NIT_RECEPTOR> 
+        <VALOR> 100.00 </VALOR> 
+        <IVA> 12.00 </IVA> 
+        <TOTAL> 112.00 </TOTAL> 
+    </DTE> 
+    <DTE> 
+        <TIEMPO> Guatemala, 09/01/2021 15:25 hrs. </TIEMPO> 
         <REFERENCIA> A1990 </REFERENCIA> 
         <NIT_EMISOR> 7378106 </NIT_EMISOR> 
         <NIT_RECEPTOR> 8338817 </NIT_RECEPTOR> 
         <VALOR> 100.00 </VALOR> 
         <IVA> 12.00 </IVA> 
         <TOTAL> 112.00 </TOTAL> 
+    </DTE> 
+    <DTE> 
+        <TIEMPO> Guatemala, 09/04/2021 15:25 hrs. </TIEMPO> 
+        <REFERENCIA> A1993 </REFERENCIA> 
+        <NIT_EMISOR> 7378106 </NIT_EMISOR> 
+        <NIT_RECEPTOR> 8338817 </NIT_RECEPTOR> 
+        <VALOR> 100.00 </VALOR> 
+        <IVA> 12.00 </IVA> 
+        <TOTAL> 112.00 </TOTAL> 
+    </DTE> 
+    <DTE> 
+        <TIEMPO> Guatemala, 09/05/2021 15:25 hrs. </TIEMPO> 
+        <REFERENCIA> A1993 </REFERENCIA> 
+        <NIT_EMISOR> 7378106 </NIT_EMISOR> 
+        <NIT_RECEPTOR> 8338817 </NIT_RECEPTOR> 
+        <VALOR> 112.00 </VALOR> 
+        <IVA> 13.44 </IVA> 
+        <TOTAL> 125.44 </TOTAL> 
     </DTE> 
 </SOLICITUD_AUTORIZACION >

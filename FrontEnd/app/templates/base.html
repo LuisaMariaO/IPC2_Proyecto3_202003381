@@ -38,8 +38,8 @@
       <div class="container">
         <div class="row align-items-center">
           
-          <div class="col-11 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="index.html" class="text-white mb-0">Proyecto 3</a></h1>
+          <div class="col-11 col-md-2">
+            <h1 class="mb-0 site-logo"><a href="{% url 'index' %}" class="text-white mb-0">Autorización de DTE</a></h1>
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
@@ -49,9 +49,9 @@
                 <li><a href="{% url 'cargar' %}"><span>Cargar archivo</span></a></li>
                 
                 <li class="has-children">
-                  <a href="index.html"><span>Peticiones</span></a>
+                  <a ><span>Peticiones</span></a>
                   <ul class="dropdown arrow-top">
-                    <li><a href="#">Consultar datos</a></li>
+                    <li><a href="{% url 'consulta' %}">Consultar datos</a></li>
                     <li><a href="#">Resumen de IVA por fecha y NIT</a></li>
                     <li><a href="#">Resumen por rango de fechas</a></li>
                     <li><a href="#">Reporte de peticiones</a></li>
@@ -88,7 +88,8 @@
     <button type="button" class="btn btn-success">Enviar</button>
     <button type="button" class="btn btn-danger">Reset</button>
     </div>-->
-
+    <form action="/resetdata/"> <p style="margin-left: 30px;">
+    <button type="submit" class="btn btn-danger">Reset</button></p></form>
     <main role="main">
       {% block content %}{% endblock %}
     </main>
