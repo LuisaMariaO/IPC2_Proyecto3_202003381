@@ -6,5 +6,9 @@ urlpatterns = [
     path('cargar/',views.carga, name='cargar'),
     path('resetdata/',views.resetdata, name='resetdata'),
     path('consulta/',views.getdata, name='consulta'),
+    path('info/',views.info, name='info'),
+    path('documentacion/',views.documentacion, name='documentacion'),
+    path('resumenIVA/',views.graficarIVA, name='resumenIVA'),
+    
     
 ]
