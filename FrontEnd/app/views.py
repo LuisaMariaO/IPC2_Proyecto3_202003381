@@ -2,8 +2,10 @@ from os import path
 from django.shortcuts import render
 import requests
 from requests.sessions import Request
+
 from app.forms import DateForm
 from app.forms import FileForm
+from app.forms import ValueForm
 
 # Create your views here.
 endpoint='http://localhost:5000/'
@@ -111,7 +113,47 @@ def graficarIVA(request):
             form = DateForm()      
     except:
         print('Algo anda mal con la API D:')
-    return render(request, 'resumenIVA.html',context)  
+    return render(request, 'resumenIVA.html',context)
+
+def graficaFechas(request): 
+      
+    
+    context = {
+        'data': [None],
+        'rango': None
+    }
+    
+    if request.method == 'GET':
+        
+        form= ValueForm(request.GET)
+
+    try:  
+        if form.is_valid():
+            
+            json_data = form.cleaned_data
+            
+            fecha1=str(json_data['fecha1'])
+            lfecha1=fecha1.split('-')
+
+            fecha2=str(json_data['fecha2'])
+            lfecha2=fecha2.split('-')
+
+            valor=str(json_data['valor'])
+            if valor=='Total':
+                valorp='total'
+            else:
+                valorp='SIva'
+
+            context['rango'] = lfecha1[2]+'/'+lfecha1[1]+'/'+lfecha1[0]+'-'+lfecha2[2]+'/'+lfecha2[1]+'/'+lfecha2[0]+' Tipo de valor: '+valor
+            response = requests.get(endpoint + 'resumenfecha/'+lfecha1[2]+'/'+lfecha1[1]+'/'+lfecha1[0]+'='+lfecha2[2]+'/'+lfecha2[1]+'/'+lfecha2[0]+'/'+valorp) #resumenfecha/09/01/2021=09/05/2021/total
+            data = response.json()
+            context['data'] = data
+            
+        else:
+            form = ValueForm()      
+    except:
+        print('Algo anda mal con la API D:')
+    return render(request, 'resumenFechas.html',context)  
     
 
 

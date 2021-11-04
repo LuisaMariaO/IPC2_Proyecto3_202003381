@@ -27,6 +27,8 @@ def add_solicitudes():
     except:
         pass
     xml = str(request.data.decode('utf-8'))
+    
+    
     root = ET.fromstring(xml)
 
     meses31=['1','3','5','7','8','10','12']
@@ -75,8 +77,8 @@ def add_solicitudes():
 
   
 
-        
-    try:
+    try:    
+    
         manager.verify_solicitudes()
         manager.llenarXML()
         return jsonify({'ok':True, 'msg':'Archivo XML cargado correctamente :D'}), 200

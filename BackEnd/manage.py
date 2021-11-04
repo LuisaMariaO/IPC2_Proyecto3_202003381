@@ -6,6 +6,7 @@ from fecha import Fecha
 from nit import Nit
 from fechagrafica import Fechagrafica
 from peticion import Peticion
+from datetime import datetime 
 class Manager():
     def __init__(self):
         self.solicitudes = []
@@ -19,8 +20,8 @@ class Manager():
 
 
     def add_solicitud(self,fecha,dia,mes,año,referencia, nit_emisor, nit_receptor, valor, iva, total):
-        nit_emisor=nit_emisor.replace(' ','')
-        nit_receptor=nit_receptor.replace(' ','')
+        nit_emisor=nit_emisor.strip()
+        nit_receptor=nit_receptor.strip()
         self.solicitudes.append(Solicitud(fecha,dia,mes,año,referencia, nit_emisor, nit_receptor, valor, iva, total))
         return True
 
@@ -45,9 +46,17 @@ class Manager():
                 self.fechas.append(Fecha(solicitud.fecha,solicitud.dia,solicitud.mes, solicitud.año))
             #Lleno una lista auxiliar de referencias para verificar repeticiones después
             self.auxreferencias.append(solicitud.referencia)
-
-        self.fechas.sort(key = lambda f: f.fecha) #about 9 - 6.1 = 3 secs
+        fas=[]
+        for fecha in self.fechas:
+            fas.append(fecha.fecha)
+        print(fas)
+        fas.sort()
+        print(fas)
         
+        
+        self.fechas.sort(key = lambda f: datetime.strptime(f.fecha, '%d/%m/%Y'))
+        
+
         #Por cada solicitud, si coincide con una fecha en la lista de fechas, sumo uno al contador de facturas
         for solicitud in self.solicitudes:
             for fecha in self.fechas:
@@ -329,11 +338,16 @@ class Manager():
     
     def resumenfecha(self,diai,mesi,anioi,diaf,mesf,aniof,param):
         fechasgrafica=[]
+     
+        fecha1=datetime.strptime(diai+'/'+mesi+'/'+anioi, '%d/%m/%Y')
+        fecha2=datetime.strptime(diaf+'/'+mesf+'/'+aniof, '%d/%m/%Y')
         for fecha in self.fechas:
             
-            if fecha.dia>=diai and fecha.dia<=diaf and fecha.mes>=mesi and fecha.mes<=mesf and fecha.año>=anioi and fecha.año<=aniof:
+            fechac=datetime.strptime(fecha.dia+'/'+fecha.mes+'/'+fecha.año, '%d/%m/%Y')
+            
+            if fechac>=fecha1 and fechac<=fecha2 :
                 fechasgrafica.append(Fechagrafica(fecha.fecha))
-
+           
         
         if param=='total':
             for f in fechasgrafica:
@@ -371,7 +385,7 @@ class Manager():
             for f in fechasgrafica:
                 fecha={
                     'fecha': f.fecha,
-                    'vsinIVA':f.vsiniva
+                    'total':f.vsiniva
                 }
                 json.append(fecha)  
 
